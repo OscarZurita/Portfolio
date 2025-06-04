@@ -1,0 +1,36 @@
+services:
+  spring:
+    container_name: springboot-portfolio
+    env_file:
+      - ./.env.dev.docker
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+    depends_on:
+      - mysql
+    networks:
+      - springboot-network
+
+  mysql:
+    image: mysql:8
+    container_name: mysql-portfolio
+    restart: no
+    env_file:
+      - ./.env.dev.docker
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: portfolio
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - springboot-network
+
+networks:
+  springboot-network:
+
+volumes:
+  mysql_data:
