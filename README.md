@@ -38,11 +38,12 @@ For this you will need certain prequisites and to follow a somewhat more complex
 
 #### Steps
 
-1. Run MySQL and configure MySQL. Set the same user and password as specified in the ./src/main/resources/application.properties
-2. Run Spring using the maven wrapper ```./mvnw spring-boot:run```
-3. Enter the frontend folder ```cd ./frontend```
-4. Install dependencies ```npm install```
-5. Run the frontend ```npm run```
+1. Run and configure MySQL. Set the root password as specified in the ./src/main/resources/application.properties or use environment variables (recommended)
+2. On the MySQL service, create a new database called portfolio ```CREATE DATABASE portfolio;```
+3. Run Spring using the maven wrapper ```./mvnw spring-boot:run```
+4. Enter the frontend folder ```cd ./frontend```
+5. Install dependencies ```npm install```
+6. Run the frontend ```npm run```
 
 
 
