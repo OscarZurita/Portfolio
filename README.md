@@ -1,5 +1,7 @@
 # Personal portfolio project
 
+> Important note: this project is currently under development, so there could be error in the code or services that do not work yet
+
 Welcome to my personal portfolio project!
 My name is Óscar, I am a software engineering student and I'm building this website project to have somewhere to gather my software projects.
 
