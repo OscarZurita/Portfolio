@@ -3,6 +3,7 @@ import { CssBaseline, ThemeProvider, createTheme } from '@mui/material';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Hero from './components/Hero';
 import Contact from './components/Contact';
+import { LanguageProvider } from './context/LanguageContext';
 
 const theme = createTheme({
   typography: {
@@ -20,15 +21,17 @@ const theme = createTheme({
 
 function App() {
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <Router>
-        <Routes>
-          <Route path="/" element={<Hero />} />
-          <Route path="/contact" element={<Contact />} />
-        </Routes>
-      </Router>
-    </ThemeProvider>
+    <LanguageProvider>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <Router>
+          <Routes>
+            <Route path="/" element={<Hero />} />
+            <Route path="/contact" element={<Contact />} />
+          </Routes>
+        </Router>
+      </ThemeProvider>
+    </LanguageProvider>
   );
 }
 

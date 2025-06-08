@@ -1,92 +1,112 @@
 import React from 'react';
-import { Box, Typography, Button, Container } from '@mui/material';
-import { motion } from 'framer-motion';
+import { Box, Typography, Container, Grid } from '@mui/material';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import SocialLinks from './SocialLinks';
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../translations';
+import Navbar from './Navbar';
+import Skills from './Skills';
 
 const Hero = () => {
   const navigate = useNavigate();
+  const { language } = useLanguage();
+  const t = translations[language];
+  const { scrollYProgress } = useScroll();
+  
+  const titleOpacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
+  const titleY = useTransform(scrollYProgress, [0, 0.3], [0, -100]);
+  const skillsOpacity = useTransform(scrollYProgress, [0.2, 0.5], [0, 1]);
+  const skillsY = useTransform(scrollYProgress, [0.2, 0.5], [100, 0]);
 
   return (
     <Box
       sx={{
-        minHeight: '100vh',
+        minHeight: '190vh',
         display: 'flex',
-        alignItems: 'center',
-        background: 'linear-gradient(45deg, #1a237e 30%, #0d47a1 90%)',
-        color: 'white',
+        flexDirection: 'column',
+        background: '#1a1a1a',
+        color: '#ffffff',
+        position: 'relative'
       }}
     >
-      <Container>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          <Typography
-            variant="h1"
-            sx={{
-              fontSize: { xs: '2.5rem', md: '4rem' },
-              fontWeight: 'bold',
-              mb: 2,
-            }}
-          >
-            Hi, I'm Oscar
-          </Typography>
-          <Typography
-            variant="h2"
-            sx={{
-              fontSize: { xs: '1.5rem', md: '2rem' },
-              mb: 4,
-              color: 'rgba(255, 255, 255, 0.9)',
-            }}
-          >
-            Full Stack Developer
-          </Typography>
-          <Typography
-            variant="body1"
-            sx={{
-              fontSize: { xs: '1rem', md: '1.2rem' },
-              mb: 4,
-              maxWidth: '600px',
-              color: 'rgba(255, 255, 255, 0.8)',
-            }}
-          >
-            I build modern web applications with a focus on user experience and clean code.
-          </Typography>
-          <Box sx={{ display: 'flex', gap: 2 }}>
-            <Button
-              variant="contained"
-              size="large"
-              sx={{
-                backgroundColor: 'white',
-                color: '#1a237e',
-                '&:hover': {
-                  backgroundColor: 'rgba(255, 255, 255, 0.9)',
-                },
+      <Navbar />
+      <Container sx={{ mt: 8 }}>
+        <Grid container spacing={4} sx={{ minHeight: '100vh', display: 'flex', alignItems: 'center' }}>
+          <Grid item xs={12}>
+            <motion.div
+              style={{
+                opacity: titleOpacity,
+                y: titleY,
               }}
             >
-              View Projects
-            </Button>
-            <Button
-              variant="outlined"
-              size="large"
-              onClick={() => navigate('/contact')}
-              sx={{
-                borderColor: 'white',
-                color: 'white',
-                '&:hover': {
-                  borderColor: 'white',
-                  backgroundColor: 'rgba(255, 255, 255, 0.1)',
-                },
-              }}
-            >
-              Contact Me
-            </Button>
-          </Box>
-          <SocialLinks />
-        </motion.div>
+              <Box
+                sx={{
+                  p: 4,
+                  mb: 4,
+                  position: 'relative',
+                }}
+              >
+                <Typography
+                  variant="h2"
+                  sx={{
+                    fontSize: { xs: '5rem', md: '8.5rem' },
+                    mb: 4,
+                    color: '#ffffff',
+                    fontFamily: 'monospace',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.1em',
+                    mt: 2,
+                    textAlign: 'center',
+                    fontWeight: 900,
+                    lineHeight: 1.2,
+                  }}
+                >
+                  {t.title}
+                </Typography>
+                <Typography
+                  variant="body1"
+                  sx={{
+                    fontSize: { xs: '1rem', md: '1.2rem' },
+                    mb: 4,
+                    maxWidth: '600px',
+                    margin: '0 auto',
+                    color: '#ffffff',
+                    fontFamily: 'monospace',
+                    lineHeight: 1.6,
+                    textAlign: 'center',
+                  }}
+                >
+                  {'>'} {t.description}
+                </Typography>
+              </Box>
+            </motion.div>
+          </Grid>
+        </Grid>
       </Container>
+
+      <motion.div
+        style={{
+          opacity: skillsOpacity,
+          y: skillsY,
+        }}
+      >
+        <Container>
+          <Skills />
+        </Container>
+      </motion.div>
+
+      <Box
+        sx={{
+          position: 'fixed',
+          bottom: '2rem',
+          left: '2rem',
+          p: 2,
+          zIndex: 1000,
+        }}
+      >
+        <SocialLinks />
+      </Box>
     </Box>
   );
 };

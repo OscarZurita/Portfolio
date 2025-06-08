@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800px" height="800px" viewBox="0 0 800 800" version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <circle fill="#61DAFB" cx="400" cy="400" r="400"/>
+        <g transform="translate(400.000000, 400.000000)">
+            <circle fill="#61DAFB" cx="0" cy="0" r="100"/>
+            <g transform="rotate(0.000000)">
+                <ellipse fill="#61DAFB" cx="0" cy="-200" rx="26" ry="80"/>
+            </g>
+            <g transform="rotate(72.000000)">
+                <ellipse fill="#61DAFB" cx="0" cy="-200" rx="26" ry="80"/>
+            </g>
+            <g transform="rotate(144.000000)">
+                <ellipse fill="#61DAFB" cx="0" cy="-200" rx="26" ry="80"/>
+            </g>
+            <g transform="rotate(216.000000)">
+                <ellipse fill="#61DAFB" cx="0" cy="-200" rx="26" ry="80"/>
+            </g>
+            <g transform="rotate(288.000000)">
+                <ellipse fill="#61DAFB" cx="0" cy="-200" rx="26" ry="80"/>
+            </g>
+        </g>
+    </g>
+</svg> 
