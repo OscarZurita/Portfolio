@@ -1,5 +1,5 @@
 import React from 'react';
-import { CssBaseline, ThemeProvider, createTheme } from '@mui/material';
+import { CssBaseline, ThemeProvider, createTheme, GlobalStyles } from '@mui/material';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Hero from './components/Hero';
 import Contact from './components/Contact';
@@ -19,11 +19,24 @@ const theme = createTheme({
   },
 });
 
+const globalStyles = {
+  'html, body, #root': {
+    backgroundColor: '#1a1a1a',
+    minHeight: '100%',
+    margin: 0,
+    padding: 0,
+  },
+  body: {
+    overflow: 'auto',
+  },
+};
+
 function App() {
   return (
     <LanguageProvider>
       <ThemeProvider theme={theme}>
         <CssBaseline />
+        <GlobalStyles styles={globalStyles} />
         <Router>
           <Routes>
             <Route path="/" element={<Hero />} />
